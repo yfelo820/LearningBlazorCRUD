@@ -1,0 +1,50 @@
+﻿@page "/gridExample"
+@using Microsoft.AspNetCore.Components.QuickGrid
+
+<h3>Grid Example</h3>
+
+<p> Columna Seleccionada: @Valor </p>
+
+<QuickGrid Items="people">
+    <PropertyColumn Property="b => b.PersonId" Sortable="true" />
+    <PropertyColumn Property="b => b.Name" Sortable="true" />
+    <PropertyColumn Property="b => b.BirthDate" Sortable="true" Format="dd-MMM-yyyy" />
+    <TemplateColumn>
+        <button class="btn btn-primary" type="submit" @onclick="ClickBtn"> Click Me! </button>
+    </TemplateColumn>
+    <TemplateColumn Title="Button">
+        <button @onclick="@(() => MyMethod(context.PersonId))">Click me</button>
+    </TemplateColumn>
+</QuickGrid>
+
+
+@code {
+    public class Person
+    {
+        public int PersonId { get; set; }
+        public string Name { get; set; } = string.Empty;
+        public DateOnly BirthDate { get; set; }
+    }
+
+    private int Valor = 0;
+
+    private IQueryable<Person> people = new[] {
+        new Person { PersonId = 10895, Name = "Jean Martin", BirthDate =  new DateOnly (1985, 3, 16) },
+        new Person { PersonId = 10944, Name = "António Langa",BirthDate =  new DateOnly (1991, 12, 1) },
+        new Person { PersonId = 11203, Name = "Julie Smith", BirthDate = new DateOnly (1958, 10, 10) },
+        new Person { PersonId = 11205, Name = "Nur Sari", BirthDate = new DateOnly (1922, 4, 27) },
+        new Person { PersonId = 11898, Name = "Jose Hernandez", BirthDate = new DateOnly (2011, 5, 3) },
+        new Person { PersonId = 12130, Name = "Kenji Sato", BirthDate = new DateOnly (2004, 1, 9) },
+    }.AsQueryable();
+
+    private void ClickBtn()
+    {
+        Valor += 2;
+    }
+
+    private void MyMethod(int id)
+    {
+        Valor += id;
+    }
+
+}

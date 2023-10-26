@@ -1,0 +1,59 @@
+﻿@page "/bookDetails"
+@page "/bookDetails/{id:int}"
+@inject IBookService BookService;
+@inject NavigationManager NavigationManager;
+
+<h2>Book Details</h2>
+
+<EditForm Model="@book">
+
+    <table class="table">
+        <tr>
+            <td>Title:</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="book.Title" /> </td>
+        </tr>
+        <tr>
+            <td>Author:</td>
+            <td><input class="form-control col-sm-4" type="text" @bind="book.Author" /> </td>
+        </tr>
+        <tr>
+            <td colspan="2" style="text-align:center">
+                <input class="btn btn-primary" style="background-color:#0b5ed7;" type="submit" value="Save" @onclick="SaveBook" />
+                <input class="btn btn-secondary" style="background-color:gray;" type="button" value="Cancel" @onclick="Cancel" />
+            </td>
+        </tr>
+    </table>
+
+</EditForm>
+
+@code {
+
+    [Parameter]
+    public int id { get; set; }
+
+    private Book book = new Book();
+
+    protected override async Task OnInitializedAsync()
+    {
+        if(id != 0)
+        {
+            book = await BookService.GetBook(id); 
+        }
+    }
+
+    protected async Task SaveBook()
+    {
+        var bookSaved = await BookService.SaveBook(book);
+
+        if(bookSaved)
+        {
+            book = new Book();
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    protected void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
