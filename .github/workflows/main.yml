@@ -1,0 +1,13 @@
+name: Start Actions
+
+on: 
+    push:
+        branches:
+            - master
+
+jobs: 
+    main_job:
+        runs-on: windows-2022
+        steps:
+            - name: first_step
+              run: echo "compiling"
