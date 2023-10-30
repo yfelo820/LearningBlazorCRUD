@@ -1,8 +1,21 @@
 version: 1.0.0-{build}
+
 image: Visual Studio 2022
+
 configuration: Release
+
 cache: 
     - packages -> **\packages.config
+
 before_build: nuget restore
-build: 
-    publish_wap: true
+
+build_script:
+  - ps: |
+      # Instala las dependencias de .NET 7
+      dotnet --list-sdks
+      dotnet --version
+      dotnet --list-runtimes
+      
+      # Compila la aplicación especificando el archivo de proyecto
+      dotnet build LearningBlazorCRUD/LearningBlazorCRUD.csproj
+  - publish_wap: true
