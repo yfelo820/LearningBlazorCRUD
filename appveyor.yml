@@ -17,5 +17,5 @@ build_script:
       dotnet --list-runtimes
       
       # Compila la aplicación especificando el archivo de proyecto
-      dotnet build LearningBlazorCRUD/LearningBlazorCRUD.csproj
+      dotnet build LearningBlazorCRUD.csproj
   - publish_wap: true
