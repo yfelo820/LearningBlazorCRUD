@@ -20,7 +20,7 @@ build_script:
       dotnet build LearningBlazorCRUD.csproj
   - publish_wap: true
 
-  deploy:
+deploy:
   - provider: Environment
     name: $APP_ENV
     on:
