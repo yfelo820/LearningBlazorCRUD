@@ -26,16 +26,8 @@ build_script:
 
 deploy:
   - provider: Environment
-    name: $APP_ENV
+    name: blazor_app_env
     on:
       branch: master
 
-  - provider: FTP
-    server: ftp://155.254.244.28/www.bookstorage.somee.com
-    protocol: ftp
-    username: yfelo820
-    password: Rafa!@123
-    folder: /
-    source: /bin/Release/net7.0 # Carpeta de los archivos a cargar
-    recursive: true
-    replace: true # Esto indica que se deben reemplazar los archivos existentes
+
