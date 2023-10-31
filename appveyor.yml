@@ -1,46 +1,37 @@
 version: 1.0.0-{build}
-
 image: Visual Studio 2022
-
 environment:
   matrix:
     - APP_ENV: Development
-
 configuration: Release
-
-cache: 
-    - packages -> **\packages.config
-
+cache:
+  - packages -> **\packages.config
 before_build: nuget restore
-
 build_script:
   - ps: |
       # Instala las dependencias de .NET 7
       dotnet --list-sdks
       dotnet --version
       dotnet --list-runtimes
-      
+
       # Compila la aplicación especificando el archivo de proyecto
       dotnet build LearningBlazorCRUD.csproj
-  - publish_wap: true
-
 artifacts:
-- path: /bin/Release/net7.0
-  name: blazorapp
-  type: zip
-
+  - path: /bin/Release/net7.0
+    name: blazorapp
+    type: zip
 deploy:
   - provider: Environment
     name: blazor_app_env
     on:
       branch: master
-
   - provider: FTP
-      server: ftp://155.254.244.28/www.bookstorage.somee.com
-      protocol: ftp
-      username: yfelo820
-      password: Rafa!@123
-      folder: /
-      source: wwwroot # Ruta local de la carpeta www
-      recursive: true
-      replace: true
+    server: ftp://155.254.244.28/www.bookstorage.somee.com
+    protocol: ftp
+    username: yfelo820
+    password:
+      secure: Rafa!@123
+    folder: /
+    source: wwwroot
+    recursive: true
+    replace: true
