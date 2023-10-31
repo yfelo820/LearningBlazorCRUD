@@ -24,6 +24,11 @@ build_script:
       dotnet build LearningBlazorCRUD.csproj
   - publish_wap: true
 
+artifacts:
+- path: /bin/Release/net7.0
+  name: blazorapp
+  type: zip
+
 deploy:
   - provider: Environment
     name: blazor_app_env
