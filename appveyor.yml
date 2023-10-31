@@ -35,4 +35,12 @@ deploy:
     on:
       branch: master
 
-
+  - provider: FTP
+      server: 155.254.244.28/www.bookstorage.somee.com
+      protocol: ftp
+      username: yfelo820
+      password: Rafa!@123
+      folder: /
+      source: wwwroot # Ruta local de la carpeta www
+      recursive: true
+      replace: true
