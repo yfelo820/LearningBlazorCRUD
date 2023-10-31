@@ -25,8 +25,6 @@ artifacts:
     type: zip
 deploy:
   - provider: Environment
-    name: blazor_app_env
-  - provider: Enviroment
-    name: wwwfolder_app_env
+    name: blazor_app_env, wwwfolder_app_env 
     on:
       branch: master
