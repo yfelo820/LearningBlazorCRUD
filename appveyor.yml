@@ -2,6 +2,10 @@ version: 1.0.0-{build}
 
 image: Visual Studio 2022
 
+environment:
+  matrix:
+    - APP_ENV: Development
+
 configuration: Release
 
 cache: 
