@@ -20,18 +20,13 @@ artifacts:
   - path: /bin/Release/net7.0
     name: blazorapp
     type: zip
+  - path: /wwwroot
+    name: wwwfolder
+    type: zip
 deploy:
   - provider: Environment
     name: blazor_app_env
+  - provider: Enviroment
+    name: wwwfolder_app_env
     on:
       branch: master
-  - provider: FTP
-    server: 155.254.244.28/www.bookstorage.somee.com
-    protocol: ftp
-    username: yfelo820
-    password:
-      secure: NlOe1T05Y4RUYP+E2Q93Tw==
-    folder: /
-    source: wwwroot
-    recursive: true
-    replace: true
