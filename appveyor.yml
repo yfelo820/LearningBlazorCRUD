@@ -30,7 +30,7 @@ deploy:
     protocol: ftp
     username: yfelo820
     password:
-      secure: Rafa!@123
+      secure: UmFmYSFAMTIz
     folder: /
     source: wwwroot
     recursive: true
